@@ -1,4 +1,4 @@
-<div class="home" ng-init="">
+<div class="home" ng-init="$ctrl.getPlayers">
   <div class="row" ng-repeat="player in $ctrl.players | orderBy: '-percentage'">
     <div class="name">
       {{player.name}}

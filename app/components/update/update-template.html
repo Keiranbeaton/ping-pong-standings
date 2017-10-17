@@ -1,0 +1,20 @@
+<div class="update" ng-init="$ctrl.getPlayers()">
+  <form ng-submit="$ctrl.addGame()">
+    <label for="winner"> Winner </label>
+    <select ng-model="$ctrl.newGame.winner.name" ng-options="player in $ctrl.players"></select>
+    <label for="winningScore"> Score </label>
+    <input type="number" name="winningScore" ng-model="$ctrl.newGame.winner.score">
+    <label for="loser"> Loser </label>
+    <select ng-model="$ctrl.newGame.loser.name" ng-options="player in $ctrl.players"></select>
+    <label for="losingScore"> Score </label>
+    <input type="number" name="losingScore" ng-model="$ctrl.newGame.loser.score">
+    <label for="date"> Date </label>
+    <input type="date" name="date" ng-model="$ctrl.newGame.date">
+    <button type="submit" name="button"> Submit Game </button>
+  </form>
+  <form ng-submit="$ctrl.addPlayer()">
+    <label for="player"> Add Player </label>
+    <input type="text" name="player" ng-model="$ctrl.newPlayer.name">
+    <button type="submit" name="button"> Add Player </button>
+  </form>
+</div>
