@@ -1,0 +1,19 @@
+<div class="home" ng-init="">
+  <div class="row" ng-repeat="player in $ctrl.players | orderBy: '-percentage'">
+    <div class="name">
+      {{player.name}}
+    </div>
+    <div class="wins">
+      {{player.wins}}
+    </div>
+    <div class="losses">
+      {{player.losses}}
+    </div>
+    <div class="percentage">
+      {{player.percentage}}
+    </div>
+    <div class="differential">
+      {{player.differential}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+{
+  "name": "ping-pong-standings",
+  "version": "1.0.0",
+  "description": "The standings for our in house ping pong games (Mostly to prove that I beat Joey more than he beats me).",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./backend/test/test-harness.js",
+    "watch": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "./node_modules/webpack/bin/webpack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keiranbeaton/ping-pong-standings.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Keiranbeaton/ping-pong-standings/issues"
+  },
+  "homepage": "https://github.com/Keiranbeaton/ping-pong-standings#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.9.0",
+    "mocha": "^4.0.1",
+    "webpack-dev-server": "^2.9.2"
+  },
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-route": "^1.6.6",
+    "angular-ui-bootstrap": "^2.5.6",
+    "autoprefixer": "^7.1.5",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "cors": "^2.8.4",
+    "css-loader": "^0.28.7",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
+    "http-errors": "^1.6.2",
+    "mongoose": "^4.12.3",
+    "morgan": "^1.9.0",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.8",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.7.1"
+  }
+}
