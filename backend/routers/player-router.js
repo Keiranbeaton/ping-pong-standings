@@ -11,7 +11,7 @@ let playerRouter = module.exports = exports = Router();
 playerRouter.post('/', jsonParser, (req, res, next) => {
   debug('POST /api/players');
   let newPlayer = new Player();
-  newPlayer.name = req.body.name.toLowerCase();
+  newPlayer.name = req.body.name;
   newPlayer.games = [];
   newPlayer.save().then((player) => {
     res.json(player);
