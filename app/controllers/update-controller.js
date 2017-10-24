@@ -27,17 +27,24 @@ module.exports = function(app) {
 
     this.updatePlayer = function(_id, game) {
       $log.debug('UpdateController.updatePlayer');
-      let playerArray = this.players;
-      let playerIndex = playerArray.findIndex((player) => {
+      let one = this.players[0].games;
+      let two = this.players[1].games;
+      let three = this.players[2].games;
+      let four = this.players[3].games;
+      let five = this.players[4].games;
+      let six = this.players[5].games;
+      $log.log('player games', one, two, three, four, five, six);
+      let playerIndex = this.players.findIndex((player) => {
         return player._id === _id;
       });
-      let player = playerArray[playerIndex];
+      let player = this.players[playerIndex];
+      let gamesplayed = player.games.length;
+      $log.log('player games before', gamesplayed);
       player.games.push(game);
-      $log.log('player', player);
+      $log.log('player games after', player.games);
       $http.put(this.baseUrl + '/players/' + _id, player, this.config)
         .then((res) => {
-          $log.log('success', res);
-
+          $log.log('successfully updated player: ' + player.name, res);
         }, (err) => {
           $log.error('error', err);
         });
@@ -133,7 +140,7 @@ module.exports = function(app) {
       $log.log('this.newGame', this.newGame);
       $http.post(this.baseUrl + '/games', this.newGame, this.config)
         .then((res) => {
-          $log.log('success', res.data);
+          $log.log('successfully posted game', res.data);
           this.updatePlayer(this.newGame.winner._id, res.data);
           this.updatePlayer(this.newGame.loser._id, res.data);
           this.newGame = {winner: {name: '', score: 21, _id: ''}, loser: {name: '', score: 0, _id: ''}, date: new Date()};

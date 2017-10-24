@@ -11,12 +11,13 @@ module.exports = function(app) {
         .then((res) => {
           this.players = res.data;
           this.players.forEach((player) => {
-            player.percentage = player.wins / player.games.length;
+            player.percentage = parseFloat(player.wins / player.games.length).toFixed(3);
             player.differential = player.pointsFor - player.pointsAgainst;
           });
           this.players.sort((a, b) => {
             return b.percentage - a.percentage;
           });
+          console.log('this.players', this.players);
         });
     };
 

@@ -1,5 +1,15 @@
 div.home {
-  padding: 20px 10px 0px 10px;
+  div.kb-container {
+    border: thin black solid;
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    :after {
+      display: table;
+      clear: both;
+      content: "";
+    }
+  }
   div.kb-row {
     position: relative;
     width: 100%;
@@ -10,9 +20,8 @@ div.home {
       font-family: $kb-title-font;
     }
     div.kb-column {
+      float: left;
       text-align: center;
-      position: relative;
-      display: inline-block;
       width: 20%;
       margin: 0;
       padding: 0;
