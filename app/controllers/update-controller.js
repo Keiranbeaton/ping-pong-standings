@@ -27,21 +27,11 @@ module.exports = function(app) {
 
     this.updatePlayer = function(_id, game) {
       $log.debug('UpdateController.updatePlayer');
-      let one = this.players[0].games;
-      let two = this.players[1].games;
-      let three = this.players[2].games;
-      let four = this.players[3].games;
-      let five = this.players[4].games;
-      let six = this.players[5].games;
-      $log.log('player games', one, two, three, four, five, six);
       let playerIndex = this.players.findIndex((player) => {
         return player._id === _id;
       });
       let player = this.players[playerIndex];
-      let gamesplayed = player.games.length;
-      $log.log('player games before', gamesplayed);
       player.games.push(game);
-      $log.log('player games after', player.games);
       $http.put(this.baseUrl + '/players/' + _id, player, this.config)
         .then((res) => {
           $log.log('successfully updated player: ' + player.name, res);

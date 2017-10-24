@@ -5,6 +5,7 @@ module.exports = function(app) {
 
   function HomeController($log, $http) {
     this.players = [];
+    this.orderProperty = '-percentage';
     this.getPlayers = function() {
       $log.debug('HomeController.getPlayers');
       $http.get(this.baseUrl + '/players', this.config)
@@ -14,10 +15,6 @@ module.exports = function(app) {
             player.percentage = parseFloat(player.wins / player.games.length).toFixed(3);
             player.differential = player.pointsFor - player.pointsAgainst;
           });
-          this.players.sort((a, b) => {
-            return b.percentage - a.percentage;
-          });
-          console.log('this.players', this.players);
         });
     };
 
@@ -36,32 +33,15 @@ module.exports = function(app) {
       });
     };
 
-    this.sortWins = function() {
-      $log.debug('HomeController.sortWins');
-      this.players.sort((a, b) => {
-        return b.wins - a.wins;
-      });
-    };
-
-    this.sortLosses = function() {
-      $log.debug('HomeController.sortLosses');
-      this.players.sort((a, b) => {
-        return a.losses - b.losses;
-      });
-    };
-
-    this.sortPct = function() {
-      $log.debug('HomeController.sortPct');
-      this.players.sort((a, b) => {
-        return b.percentage - a.percentage;
-      });
-    };
-
-    this.sortDiff = function() {
-      $log.debug('HomeController.sortDiff');
-      this.players.sort((a, b) => {
-        return b.differential - a.differential;
-      });
+    this.setOrderProperty = function(property) {
+      $log.debug('HomeController.setOrderProperty(' + property + ')');
+      if (this.orderProperty === property) {
+        this.orderProperty = '-' + property;
+      } else if (this.orderProperty === '-' + property) {
+        this.orderProperty = property;
+      } else {
+        this.orderProperty = property;
+      }
     };
   }
 };

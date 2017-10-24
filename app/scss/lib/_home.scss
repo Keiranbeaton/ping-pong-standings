@@ -4,10 +4,36 @@ div.home {
     width: 98%;
     margin-left: 1%;
     margin-right: 1%;
+    margin-bottom: 10px;
+    margin-top: 10px;
     :after {
       display: table;
       clear: both;
       content: "";
+    }
+    div.kb-row {
+      border-bottom: solid thin black;
+      &.header-row {
+        .kb-column {
+          cursor: pointer;
+        }
+      }
+      &.even {
+        background-color: grey;
+      }
+      &.odd {
+        background-color: lightgrey;
+      }
+      div.kb-column {
+        float: left;
+        text-align: center;
+        width: 20%;
+        margin: 0;
+        padding: 0;
+        p {
+          margin: 5px 0px 5px 0px;
+        }
+      }
     }
   }
   div.kb-row {
@@ -15,22 +41,9 @@ div.home {
     width: 100%;
     h3 {
       text-align: center;
-      margin: 0;
+      margin: 20px 0px 0px 0px;
       font-size: 1.6em;
       font-family: $kb-title-font;
-    }
-    div.kb-column {
-      float: left;
-      text-align: center;
-      width: 20%;
-      margin: 0;
-      padding: 0;
-      &.wins, &.percentage {
-        background-color: grey;
-      }
-      &.name, &.losses, &.differential {
-        background-color: lightgrey;
-      }
     }
   }
 }

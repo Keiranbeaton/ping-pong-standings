@@ -4,61 +4,76 @@ module.exports = function(app) {
   app.controller('PlayerPageController', ['$log', '$http', '$scope', PlayerPageController]);
 
   function PlayerPageController($log, $http, $scope) {
-    this.players = $scope.players;
-    this.player = $scope.player;
     this.totals = true;
     this.averages = false;
-    this.orderProperty = 'name';
+    this.orderProperty = '-percentage';
     this.opponents = [];
 
     this.init = function() {
-      this.opponents = this.players.filter((player) => {
+      $log.debug('PlayerPageController.init');
+      $log.log('scope', $scope);
+      $log.log('this', this);
+      this.opponents = this.playerArray.filter((player) => {
         return player.name !== this.player.name;
       }).map((opponent) => {
-        return {name: opponent.name, wins: [], losses: []};
+        return {name: opponent.name, games: [], wins: 0, losses: 0};
       });
       this.opponents.forEach((opponent) => {
         opponent.games = this.player.games.filter((game) => {
           return game.loser.name === opponent.name || game.winner.name === opponent.name;
         });
-        opponent.wins = opponent.games.filter((game)=> {
+        opponent.winsArray = opponent.games.filter((game)=> {
           return game.winner.name === this.player.name;
-        }).length;
-        opponent.losses = opponent.games.length - opponent.wins;
-        opponent.pointsFor = opponent.games.reduce((acc, curr) => {
-          if (curr.winner.name === this.player.name) {
-            return acc + curr.winner.score;
-          } else {
-            return acc + curr.loser.score;
-          }
         });
-        opponent.pointsAgainst = opponent.games.reduce((acc, curr) => {
-          if (curr.winner.name === this.player.name) {
-            return acc + curr.loser.score;
-          } else {
-            return acc + curr.winner.score;
-          }
+        opponent.lossesArray = opponent.games.filter((game) => {
+          return game.loser.name === this.player.name;
         });
+        opponent.wins = opponent.winsArray.length;
+        opponent.losses = opponent.lossesArray.length;
+        opponent.pointsFor = opponent.games.map((game) => {
+          if (game.winner.name === this.player.name) {
+            return game.winner.score;
+          } else {
+            return game.loser.score;
+          }
+        }).reduce((acc, curr) => {
+          return acc + curr;
+        }, 0);
+        opponent.pointsAgainst = opponent.games.map((game) => {
+          if (game.winner.name === this.player.name) {
+            return game.loser.score;
+          } else {
+            return game.winner.score;
+          }
+        }).reduce((acc, curr) => {
+          return acc + curr;
+        }, 0);
+        $log.log('pointsFor', opponent.pointsFor);
+        $log.log('pointsAgainst', opponent.pointsAgainst);
         opponent.pointDifferential = opponent.pointsFor - opponent.pointsAgainst;
-
         opponent.averageFor = opponent.pointsFor / opponent.games.length;
         opponent.averageAgainst = opponent.pointsAgainst / opponent.games.length;
-        opponent.averageDiff = opponent.pointDifferential / opponent.games.length;
+        opponent.averageDiff = parseFloat(opponent.pointDifferential / opponent.games.length).toFixed(1);
+        if (opponent.pointDifferential >= 0) {
+          opponent.diffDisplay = '+' + opponent.pointDifferential;
+        } else {
+          opponent.diffDisplay = opponent.pointDifferential;
+        }
+        opponent.percentage = parseFloat(opponent.wins / opponent.games.length).toFixed(3);
       });
-      this.sortByLowest('name');
     };
 
-    this.switchStats = function() {
-      this.totals = !this.totals;
-      this.averages = !this.averages;
+    this.switchTotals = function() {
+      this.totals = true;
+      this.averages = false;
+    };
+
+    this.switchAverages = function() {
+      this.averages = true;
+      this.totals = false;
     };
 
     this.setOrderProperty = function(property) {
-      if (property === 'name') {
-        property = '-name';
-      } else if (property === '-name') {
-        property = 'name';
-      }
       if (this.orderProperty === property) {
         this.orderProperty = '-' + property;
       } else if (this.orderProperty === '-' + property) {

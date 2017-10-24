@@ -3,24 +3,24 @@
     <h3>Sortable Standings</h3>
   </div>
   <div class="kb-container">
-    <div class="kb-row">
-      <div class="kb-column name" ng-click="$ctrl.sortName">
+    <div class="kb-row header-row">
+      <div class="kb-column name">
         <h5>Player</h5>
       </div>
-      <div class="kb-column wins" ng-click="$ctrl.sortWins">
+      <div class="kb-column wins" ng-click="$ctrl.setOrderProperty('wins')">
         <h5>Wins</h5>
       </div>
-      <div class="kb-column losses" ng-click="$ctrl.sortLosses">
+      <div class="kb-column losses" ng-click="$ctrl.setOrderProperty('losses')">
         <h5>Losses</h5>
       </div>
-      <div class="kb-column percentage" ng-click="$ctrl.sortPct">
+      <div class="kb-column percentage" ng-click="$ctrl.setOrderProperty('percentage')">
         <h5>Win %</h5>
       </div>
-      <div class="kb-column differential" ng-click="$ctrl.sortDiff">
+      <div class="kb-column differential" ng-click="$ctrl.setOrderProperty('differential')">
         <h5> +/- </h5>
       </div>
     </div>
-    <div class="kb-row" ng-repeat="player in $ctrl.players">
+    <div class="kb-row" ng-repeat="player in $ctrl.players | orderBy: $ctrl.orderProperty" ng-class-even="'even'" ng-class-odd="'odd'">
       <div class="kb-column name">
         <p>{{player.name}}</p>
       </div>
