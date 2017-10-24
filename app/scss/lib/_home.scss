@@ -1,0 +1,27 @@
+div.home {
+  padding: 20px 10px 0px 10px;
+  div.kb-row {
+    position: relative;
+    width: 100%;
+    h3 {
+      text-align: center;
+      margin: 0;
+      font-size: 1.6em;
+      font-family: $kb-title-font;
+    }
+    div.kb-column {
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 20%;
+      margin: 0;
+      padding: 0;
+      &.wins, &.percentage {
+        background-color: grey;
+      }
+      &.name, &.losses, &.differential {
+        background-color: lightgrey;
+      }
+    }
+  }
+}

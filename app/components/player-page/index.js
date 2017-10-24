@@ -5,8 +5,8 @@ module.exports = (app) => {
     controller: 'PlayerPageController',
     template: require('./player-page-template.html'),
     bindings: {
-      baseUrl: '<',
-      config: '<'
+      player: '<',
+      playerArray: '<'
     }
   });
 };

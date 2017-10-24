@@ -1,0 +1,46 @@
+div.update {
+  h3 {
+    font-size: 1.6em;
+    text-align: center;
+  }
+  form.add-game {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 10px;
+    div.form-group {
+      display: inline-block;
+      width: 45%;
+      margin-bottom: 5px;
+    }
+    label {
+      display: block;
+      margin-bottom: 0px;
+      font-size: 1em;
+      font-weight: bold;
+    }
+    select, input {
+      display: block;
+      width: 120px;
+      line-height: 1em;
+      font-size: 1em;
+    }
+    button {
+      margin-top: 10px;
+      line-height: 1em;
+      display: block;
+      font-size: 1em;
+    }
+    p.form-error {
+      font-weight: bold;
+      font-size: 1em;
+      color: red;
+    }
+  }
+  form.add-player {
+    @extend .add-game;
+    div.form-group {
+      width: 100%;
+    }
+  }
+}

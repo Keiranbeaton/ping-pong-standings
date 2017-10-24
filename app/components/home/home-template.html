@@ -1,19 +1,39 @@
 <div class="home" ng-init="$ctrl.getPlayers">
-  <div class="row" ng-repeat="player in $ctrl.players | orderBy: '-percentage'">
-    <div class="name">
-      {{player.name}}
+  <div class="kb-row">
+    <h3>Sortable Standings</h3>
+  </div>
+  <div class="kb-row">
+    <div class="kb-column name" ng-click="$ctrl.sortName">
+      <h5>Player</h5>
     </div>
-    <div class="wins">
-      {{player.wins}}
+    <div class="kb-column wins" ng-click="$ctrl.sortWins">
+      <h5>Wins</h5>
     </div>
-    <div class="losses">
-      {{player.losses}}
+    <div class="kb-column losses" ng-click="$ctrl.sortLosses">
+      <h5>Losses</h5>
     </div>
-    <div class="percentage">
-      {{player.percentage}}
+    <div class="kb-column percentage" ng-click="$ctrl.sortPct">
+      <h5>Win %</h5>
     </div>
-    <div class="differential">
-      {{player.differential}}
+    <div class="kb-column differential" ng-click="$ctrl.sortDiff">
+      <h5> +/- </h5>
+    </div>
+  </div>
+  <div class="kb-row" ng-repeat="player in $ctrl.players">
+    <div class="kb-column name">
+      <p>{{player.name}}</p>
+    </div>
+    <div class="kb-column wins">
+      <p>{{player.wins}}</p>
+    </div>
+    <div class="kb-column losses">
+      <p>{{player.losses}}</p>
+    </div>
+    <div class="kb-column percentage">
+      <p>{{player.percentage}}</p>
+    </div>
+    <div class="kb-column differential">
+      <p>{{player.differential}}</p>
     </div>
   </div>
 </div>

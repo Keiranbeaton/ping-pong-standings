@@ -1,37 +1,47 @@
 <div class="update" ng-init="$ctrl.getPlayers()">
-  <form ng-submit="$ctrl.addGame()">
+  <h3>Add Game</h3>
+  <form class="add-game" ng-submit="$ctrl.addGame()">
     <div class="form-group">
       <label for="winner"> Winner </label>
-      <select ng-model="$ctrl.newGame.winner.name" ng-options="player.name for player in $ctrl.players"></select>
+      <select ng-model="$ctrl.newGame.winner.name">
+        <option value="">Choose Winner</option>
+        <option ng-repeat="player in $ctrl.players" value="{{player.name}}">{{player.name}}</option>
+      </select>
     </div>
     <div class="form-group">
-      <p ng-show="$ctrl.scoreError" class="form-error"> Winning score must be at least 21 </p>
       <label for="winningScore"> Score </label>
       <input type="number" name="winningScore" min="21" ng-model="$ctrl.newGame.winner.score">
     </div>
     <div class="form-group">
       <label for="loser"> Loser </label>
-      <select ng-model="$ctrl.newGame.loser.name" ng-options="player.name for player in $ctrl.players"></select>
+      <select ng-model="$ctrl.newGame.loser.name">
+        <option value="">Choose Loser</option>
+        <option ng-repeat="player in $ctrl.players" value="{{player.name}}">{{player.name}}</option>
+      </select>
     </div>
     <div class="form-group">
-      <p ng-show="$ctrl.overtimeError" class="form-error"> Overtime games are win by 2 </p>
       <label for="losingScore"> Score </label>
-      <input type="number" name="losingScore" min="0" ng-max="$ctrl.newGame.winner.score - 2" ng-model="$ctrl.newGame.loser.score">
+      <input type="number" name="losingScore" min="0" ng-model="$ctrl.newGame.loser.score">
     </div>
     <div class="form-group">
-      <p ng-show="$ctrl.dateError" class="form-error"> Date cannot be in the future </p>
       <label for="date"> Date </label>
       <input type="date" name="date" min="2017-10-16" ng-model="$ctrl.newGame.date">
     </div>
+    <p ng-show="$ctrl.overtimeError" class="form-error"> Win by 2 </p>
+    <p ng-show="$ctrl.noPlayerChosen" class="form-error"> Choose a winner and loser </p>
+    <p ng-show="$ctrl.scoreError" class="form-error"> Winning score must be at least 21 </p>
+    <p ng-show="$ctrl.loserScoreError" class="form-error">Winning score must excede losing score</p>
+    <p ng-show="$ctrl.dateError" class="form-error"> Date cannot be in the future </p>
     <p ng-show="$ctrl.nameError" class="form-error"> Winner and Loser can't be the same person </p>
     <button type="submit" name="button" class="btn btn-default"> Submit Game </button>
   </form>
-  <form ng-submit="$ctrl.addPlayer()">
+  <h3>Add Player</h3>
+  <form class="add-player" ng-submit="$ctrl.addPlayer()">
     <div class="form-group">
       <p ng-show="$ctrl.newPlayerError" class="form-error"> Player with that name already exists</p>
       <p ng-show="$ctrl.noNewPlayer" class="form-error"> New player must have a name </p>
-      <label for="player"> Add Player </label>
-      <input type="text" name="player" ng-model="$ctrl.newPlayer.name">
+      <label for="name"> Name </label>
+      <input type="text" name="name" ng-model="$ctrl.newPlayer.name">
     </div>
     <button type="submit" name="button" class="btn btn-default"> Add Player </button>
   </form>

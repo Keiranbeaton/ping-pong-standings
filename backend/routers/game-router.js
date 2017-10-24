@@ -13,10 +13,10 @@ gameRouter.post('/', jsonParser, (req, res, next) => {
   let newGame = new Game;
   newGame.winner.score = req.body.winner.score;
   newGame.winner.name = req.body.winner.name;
-  newGame.winner.id = req.body.winner.id;
+  newGame.winner._id = req.body.winner._id;
   newGame.loser.score = req.body.loser.score;
   newGame.loser.name = req.body.loser.name;
-  newGame.loser.id = req.body.loser.id;
+  newGame.loser._id = req.body.loser._id;
   newGame.date = req.body.date;
   newGame.save().then((game) => {
     res.json(game);

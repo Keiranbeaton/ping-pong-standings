@@ -13,6 +13,10 @@ playerRouter.post('/', jsonParser, (req, res, next) => {
   let newPlayer = new Player();
   newPlayer.name = req.body.name;
   newPlayer.games = [];
+  newPlayer.pointsFor = 0;
+  newPlayer.pointsAgainst = 0;
+  newPlayer.wins = 0;
+  newPlayer.losses = 0;
   newPlayer.save().then((player) => {
     res.json(player);
   }, (err) => {
@@ -39,13 +43,12 @@ playerRouter.get('/:id', (req, res, next) => {
 
 playerRouter.put('/:id', jsonParser, (req, res, next) => {
   debug('PUT /api/players/:id');
-  req.body.name = req.body.name.toLowerCase();
   let pointsFor = 0;
   let pointsAgainst = 0;
   let wins = 0;
   let losses = 0;
   req.body.games.forEach((game) => {
-    if (game.winner.id === req.body._id) {
+    if (game.winner._id === req.body._id) {
       wins += 1;
       pointsFor += game.winner.score;
       pointsAgainst += game.loser.score;

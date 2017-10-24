@@ -30,9 +30,6 @@ pingPongApp.config(['$routeProvider', '$locationProvider', ($rp, $lp) => {
     .when('/stats', {
       template: require('./html/stats.html')
     })
-    .when('/stats:id', {
-      template: require('./html/player-page.html')
-    })
     .when('/update', {
       template: require('./html/update.html')
     })

@@ -29,16 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader',
-          options: {
-            includePaths: [`${__dirname}/app/scss/lib`]
-          }
-        }]
+        use: ExtractText.extract({fallback:'style-loader', use: ['css-loader', 'sass-loader']})
       },
       {
         test: /\.js$/,
@@ -79,6 +70,10 @@ module.exports = {
       {
         test: /\.eot/,
         loader: 'url-loader?limit=10000&mimetype=application/vnd.ms-fontobject&name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.mp3/,
+        loader: 'file-loader'
       }
     ]
   }

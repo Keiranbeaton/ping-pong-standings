@@ -1,0 +1,71 @@
+<div class="single-player">
+  <h3>{{$ctrl.player.name}}</h3>
+  <div class="opponents">
+    <div class="kb-row">
+      <div class="click-switch" ng-class="{'selected': $ctrl.totals === true, 'unselected': $ctrl.totals === false}">
+        Totals
+      </div>
+      <div class="click-switch" ng-class="{'selected': $ctrl.averages === true, 'unselected': $ctrl.averages === false}">
+        Averages
+      </div>
+    </div>
+    <div class="kb-row">
+      <div class="column name" ng-click="$ctrl.setOrderProperty('name')">
+        <p>Opponent</p>
+      </div>
+      <div class="column wins" ng-click="$ctrl.setOrderProperty('wins')">
+        <p>Wins Against</p>
+      </div>
+      <div class="column losses" ng-click="$ctrl.setOrderProperty('losses')">
+        <p>Losses Against</p>
+      </div>
+      <div class="column points-for" ng-show="$ctrl.totals" ng-click="$ctrl.setOrderProperty('pointsFor')">
+        <p>Player Points</p>
+      </div>
+      <div class="column points-against" ng-show="$ctrl.totals" ng-click="$ctrl.setOrderProperty('pointsAgainst')">
+        <p>Opponent Points</p>
+      </div>
+      <div class="column point-differential" ng-show="$ctrl.totals" ng-click="$ctrl.setOrderProperty('pointDifferential')">
+        <p>Point Differential</p>
+      </div>
+      <div class="column average-for" ng-show="$ctrl.averages" ng-click="$ctrl.setOrderProperty('averageFor')">
+        <p>Average Points For</p>
+      </div>
+      <div class="column average-against" ng-show="$ctrl.averages" ng-click="$ctrl.setOrderProperty('averageAgainst')">
+        <p>Average Points Against</p>
+      </div>
+      <div class="column average-differential" ng-show="$ctrl.averages" ng-click="$ctrl.setOrderProperty('averageDiff')">
+        <p>Average Point Differential</p>
+      </div>
+    </div>
+    <div class="kb-row" ng-repeat="opponent in $ctrl.opponents | orderBy: $ctrl.orderProperty">
+      <div class="column name">
+        <p>{{opponent.name}}</p>
+      </div>
+      <div class="column wins">
+        <p>{{opponent.wins}}</p>
+      </div>
+      <div class="column losses">
+        <p>{{opponent.losses}}</p>
+      </div>
+      <div class="column points-for" ng-show="$ctrl.totals">
+        <p>{{opponent.pointsFor}}</p>
+      </div>
+      <div class="column points-against" ng-show="$ctrl.totals">
+        <p>{{opponent.pointsAgainst}}</p>
+      </div>
+      <div class="column point-differential" ng-show="$ctrl.totals">
+        <p>{{opponent.pointDifferential}}</p>
+      </div>
+      <div class="column average-for" ng-show="$ctrl.averages">
+        <p>{{opponent.averageFor}}</p>
+      </div>
+      <div class="column average-against" ng-show="$ctrl.averages">
+        <p>{{opponent.averageAgainst}}</p>
+      </div>
+      <div class="column average-differential" ng-show="$ctrl.averages">
+        <p>{{opponent.averageDiff}}</p>
+      </div>
+    </div>
+  </div>
+</div>
