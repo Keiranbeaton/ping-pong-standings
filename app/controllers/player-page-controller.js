@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('PlayerPageController', ['$log', '$http', '$scope', PlayerPageController]);
+  app.controller('PlayerPageController', ['$log', PlayerPageController]);
 
-  function PlayerPageController($log, $http, $scope) {
+  function PlayerPageController($log) {
     this.totals = true;
     this.averages = false;
     this.orderProperty = '-percentage';
@@ -11,8 +11,6 @@ module.exports = function(app) {
 
     this.init = function() {
       $log.debug('PlayerPageController.init');
-      $log.log('scope', $scope);
-      $log.log('this', this);
       this.opponents = this.playerArray.filter((player) => {
         return player.name !== this.player.name;
       }).map((opponent) => {
@@ -48,18 +46,25 @@ module.exports = function(app) {
         }).reduce((acc, curr) => {
           return acc + curr;
         }, 0);
-        $log.log('pointsFor', opponent.pointsFor);
-        $log.log('pointsAgainst', opponent.pointsAgainst);
-        opponent.pointDifferential = opponent.pointsFor - opponent.pointsAgainst;
-        opponent.averageFor = opponent.pointsFor / opponent.games.length;
-        opponent.averageAgainst = opponent.pointsAgainst / opponent.games.length;
-        opponent.averageDiff = parseFloat(opponent.pointDifferential / opponent.games.length).toFixed(1);
-        if (opponent.pointDifferential >= 0) {
-          opponent.diffDisplay = '+' + opponent.pointDifferential;
+        if (opponent.games.length > 0) {
+          opponent.pointDifferential = opponent.pointsFor - opponent.pointsAgainst;
+          opponent.averageFor = parseFloat(opponent.pointsFor / opponent.games.length).toFixed(1);
+          opponent.averageAgainst = parseFloat(opponent.pointsAgainst / opponent.games.length).toFixed(1);
+          opponent.averageDiff = parseFloat(opponent.pointDifferential / opponent.games.length).toFixed(1);
+          if (opponent.pointDifferential >= 0) {
+            opponent.diffDisplay = '+' + opponent.pointDifferential;
+          } else {
+            opponent.diffDisplay = opponent.pointDifferential;
+          }
+          opponent.percentage = parseFloat(opponent.wins / opponent.games.length).toFixed(3);
         } else {
-          opponent.diffDisplay = opponent.pointDifferential;
+          opponent.pointDifferential = 0;
+          opponent.averageFor = parseFloat(0).toFixed(1);
+          opponent.averageAgainst = parseFloat(0).toFixed(1);
+          opponent.averageDiff = parseFloat(0).toFixed(1);
+          opponent.diffDisplay = '+' + 0;
+          opponent.percentage = parseFloat(0).toFixed(3);
         }
-        opponent.percentage = parseFloat(opponent.wins / opponent.games.length).toFixed(3);
       });
     };
 

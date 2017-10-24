@@ -16,8 +16,8 @@
       <div class="kb-column percentage" ng-click="$ctrl.setOrderProperty('percentage')">
         <h5>Win %</h5>
       </div>
-      <div class="kb-column differential" ng-click="$ctrl.setOrderProperty('differential')">
-        <h5> +/- </h5>
+      <div class="kb-column differential" ng-click="$ctrl.setOrderProperty('averageDiff')">
+        <h5> Avg Score </h5>
       </div>
     </div>
     <div class="kb-row" ng-repeat="player in $ctrl.players | orderBy: $ctrl.orderProperty" ng-class-even="'even'" ng-class-odd="'odd'">
@@ -34,7 +34,7 @@
         <p>{{player.percentage}}</p>
       </div>
       <div class="kb-column differential">
-        <p>{{player.differential}}</p>
+        <p>{{player.averageFor}} - {{player.averageAgainst}}</p>
       </div>
     </div>
   </div>

@@ -127,7 +127,6 @@ module.exports = function(app) {
       }
       this.newGame.winner._id = this.players[winnerIndex]._id;
       this.newGame.loser._id = this.players[loserIndex]._id;
-      $log.log('this.newGame', this.newGame);
       $http.post(this.baseUrl + '/games', this.newGame, this.config)
         .then((res) => {
           $log.log('successfully posted game', res.data);

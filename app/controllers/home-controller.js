@@ -12,8 +12,19 @@ module.exports = function(app) {
         .then((res) => {
           this.players = res.data;
           this.players.forEach((player) => {
-            player.percentage = parseFloat(player.wins / player.games.length).toFixed(3);
-            player.differential = player.pointsFor - player.pointsAgainst;
+            if (player.games.length > 0) {
+              player.percentage = parseFloat(player.wins / player.games.length).toFixed(3);
+              player.differential = player.pointsFor - player.pointsAgainst;
+              player.averageFor = parseFloat(player.pointsFor / player.games.length).toFixed(1);
+              player.averageAgainst = parseFloat(player.pointsAgainst / player.games.length).toFixed(1);
+              player.averageDiff = (player.pointsFor - player.pointsAgainst) / player.games.length;
+            } else {
+              player.percentage = parseFloat(0).toFixed(3);
+              player.differential = 0;
+              player.averageFor = parseFloat(0).toFixed(1);
+              player.averageAgainst = parseFloat(0).toFixed(1);
+              player.averageDiff = 0;
+            }
           });
         });
     };
