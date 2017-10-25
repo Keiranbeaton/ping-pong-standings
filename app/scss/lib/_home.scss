@@ -16,6 +16,9 @@ div.home {
       &.header-row {
         .kb-column {
           cursor: pointer;
+          &.name {
+            cursor: default;
+          }
         }
       }
       &.even {
@@ -30,6 +33,7 @@ div.home {
         width: 20%;
         margin: 0;
         padding: 0;
+        border: thin solid black;
         p {
           margin: 5px 0px 5px 0px;
         }

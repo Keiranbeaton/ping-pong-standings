@@ -14,16 +14,16 @@
         <p>Opponent</p>
       </div>
       <div class="kb-column wins" ng-click="$ctrl.setOrderProperty('wins')">
-        <p>Record<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === 'wins'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === '-wins'"></i></p>
+        <p>Record<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-wins'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'wins'"></i></p>
       </div>
       <div class="kb-column percentage" ng-click="$ctrl.setOrderProperty('percentage')">
-        <p>Win %<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === 'percentage'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === '-percentage'"></i></p>
+        <p>Win %<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-percentage'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'percentage'"></i></p>
       </div>
       <div class="kb-column point-differential" ng-show="$ctrl.totals" ng-click="$ctrl.setOrderProperty('pointDifferential')">
-        <p>+/-<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === 'pointDifferential'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === '-pointDifferential'"></i></p>
+        <p>+/-<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-pointDifferential'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'pointDifferential'"></i></p>
       </div>
       <div class="kb-column average-score" ng-show="$ctrl.averages" ng-click="$ctrl.setOrderProperty('averageDiff')">
-        <p>Avg Score<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === 'averageDiff'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === '-averageDiff'"></i></p>
+        <p>Avg Score<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-averageDiff'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'averageDiff'"></i></p>
       </div>
     </div>
     <div class="kb-row" ng-repeat="opponent in $ctrl.opponents | orderBy: $ctrl.orderProperty">

@@ -44,6 +44,9 @@ div.single-player {
       &.header-row {
         .kb-column {
           cursor: pointer;
+          &.name {
+            cursor: default;
+          }
         }
       }
     }
