@@ -20,7 +20,6 @@ section.single-player {
   div.stats-container {
     display: block;
     width: 100%;
-    height: 60px;
     padding: 10px;
     div.kb-row {
       width: 100%;
@@ -49,13 +48,6 @@ section.single-player {
         font-size: 1.2rem;
         font-weight: bold;
       }
-    }
-  }
-  div.bottom-container {
-    width: 100%;
-    img {
-      max-width: 100%;
-      margin-top: -20px;
     }
   }
 }
