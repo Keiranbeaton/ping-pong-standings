@@ -4,18 +4,18 @@ module.exports = function(app) {
   app.controller('PlayerPageController', ['$log', PlayerPageController]);
 
   function PlayerPageController($log) {
-    this.totals = true;
-    this.averages = false;
-    this.orderProperty = '-percentage';
     this.opponents = [];
+    this.tableSrc = require('../assets/table-side-view-wider.png');
 
     this.init = function() {
       $log.debug('PlayerPageController.init');
+      $log.log('this.playerArray', this.playerArray);
       this.opponents = this.playerArray.filter((player) => {
         return player.name !== this.player.name;
       }).map((opponent) => {
         return {name: opponent.name, games: [], wins: 0, losses: 0};
       });
+      $log.log('this.opponents', this.opponents);
       this.opponents.forEach((opponent) => {
         opponent.games = this.player.games.filter((game) => {
           return game.loser.name === opponent.name || game.winner.name === opponent.name;
@@ -66,26 +66,12 @@ module.exports = function(app) {
           opponent.percentage = parseFloat(0).toFixed(3);
         }
       });
-    };
-
-    this.switchTotals = function() {
-      this.totals = true;
-      this.averages = false;
-    };
-
-    this.switchAverages = function() {
-      this.averages = true;
-      this.totals = false;
-    };
-
-    this.setOrderProperty = function(property) {
-      if (this.orderProperty === property) {
-        this.orderProperty = '-' + property;
-      } else if (this.orderProperty === '-' + property) {
-        this.orderProperty = property;
-      } else {
-        this.orderProperty = property;
-      }
+      $log.log('this.opponents before end', this.opponents);
+      this.opponents = this.opponents.filter((opponent) => {
+        $log.log('opponent', opponent);
+        return opponent.games.length > 0;
+      });
+      $log.log('this.opponents end', this.opponents);
     };
   }
 };

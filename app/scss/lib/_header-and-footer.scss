@@ -15,18 +15,29 @@ header {
     padding: 0;
     text-align: justify;
     white-space: nowrap;
+    &:after {
+      display: table;
+      clear: both;
+      content: "";
+    }
     a {
-      width: 100%;
+      text-align: center;
       color: black;
       :hover {
         color: white;
       }
+      &.left {
+        float: left;
+        width: 33%;
+      }
+      &.right {
+        float: right;
+        width: 67%;
+      }
     }
     li {
-      position: relative;
       display: inline-block;
       text-align: center;
-      width: 32.5%;
       :hover {
         background-color: lightgrey;
       }

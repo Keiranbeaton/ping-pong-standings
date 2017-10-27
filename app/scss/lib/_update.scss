@@ -4,13 +4,21 @@ div.update {
     text-align: center;
   }
   form.add-game {
-    width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 95%;
+    padding: 2% 5% 2% 5%;
     margin-bottom: 10px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border: thin black solid;
+    &:after {
+      display: table;
+      clear: both;
+      content: '';
+    }
     div.form-group {
-      display: inline-block;
-      width: 45%;
+      float: left;
+      width: 50%;
+      height: 40px;
       margin-bottom: 5px;
     }
     label {
@@ -23,6 +31,8 @@ div.update {
       display: block;
       width: 130px;
       line-height: 1em;
+      height: 20px;
+
       font-size: 1em;
     }
     button {
@@ -39,8 +49,5 @@ div.update {
   }
   form.add-player {
     @extend .add-game;
-    div.form-group {
-      width: 100%;
-    }
   }
 }

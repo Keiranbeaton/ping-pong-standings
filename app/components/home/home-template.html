@@ -1,6 +1,6 @@
 <div class="home" ng-init="$ctrl.getPlayers()">
   <div class="kb-row">
-    <h3>Sortable Standings</h3>
+    <h3>Leaderboard</h3>
   </div>
   <div class="kb-container">
     <div class="kb-row header-row">
@@ -8,34 +8,38 @@
         <h5>Player</h5>
       </div>
       <div class="kb-column wins" ng-click="$ctrl.setOrderProperty('wins')">
-        <h5>Wins<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-wins'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'wins'"></i></h5>
-      </div>
-      <div class="kb-column losses" ng-click="$ctrl.setOrderProperty('losses')">
-        <h5>Losses<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === 'losses'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === '-losses'"></i></h5>
+        <h5>Record<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-wins'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'wins'"></i></h5>
       </div>
       <div class="kb-column percentage" ng-click="$ctrl.setOrderProperty('percentage')">
         <h5>Win %<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-percentage'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'percentage'"></i></h5>
       </div>
-      <div class="kb-column differential" ng-click="$ctrl.setOrderProperty('averageDiff')">
-        <h5>Avg Score<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-averageDiff'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'averageDiff'"></i></h5>
+      <div class="kb-column differential" ng-click="$ctrl.setOrderProperty('differential')">
+        <h5>+/-<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-differential'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'differential'"></i></h5>
       </div>
+      <div class="kb-column expand"></div>
     </div>
-    <div class="kb-row" ng-repeat="player in $ctrl.players | orderBy: $ctrl.orderProperty" ng-class-even="'even'" ng-class-odd="'odd'">
-      <div class="kb-column name">
-        <p>{{player.name}}</p>
+    <div class="kb-player-wrapper" ng-repeat="player in $ctrl.players | orderBy: $ctrl.orderProperty">
+      <div class="kb-row" ng-class="{even: $even, odd: $odd}">
+        <div class="kb-column name">
+          <p>{{player.name}}</p>
+          <img src="../../assets/paddle-red.png" ng-show="{{$even}}" class="red">
+          <img src="../../assets/paddle-black.png" ng-hide="{{$even}}" class="black">
+        </div>
+        <div class="kb-column wins">
+          <p>{{player.wins}} - {{player.losses}}</p>
+        </div>
+        <div class="kb-column percentage">
+          <p>{{player.percentage}}</p>
+        </div>
+        <div class="kb-column differential">
+          <p>{{player.differential}}</p>
+        </div>
+        <div class="kb-column expand">
+          <i class="fa fa-chevron-down" ng-hide="player.expanded" ng-click="player.expanded = true"></i>
+          <i class="fa fa-chevron-up" ng-show="player.expanded" ng-click = "player.expanded = false"></i>
+        </div>
       </div>
-      <div class="kb-column wins">
-        <p>{{player.wins}}</p>
-      </div>
-      <div class="kb-column losses">
-        <p>{{player.losses}}</p>
-      </div>
-      <div class="kb-column percentage">
-        <p>{{player.percentage}}</p>
-      </div>
-      <div class="kb-column differential">
-        <p>{{player.averageFor}} - {{player.averageAgainst}}</p>
-      </div>
+      <kb-player-page ng-show="player.expanded" player="player" player-array="$ctrl.players"></kb-player-page>
     </div>
   </div>
 </div>

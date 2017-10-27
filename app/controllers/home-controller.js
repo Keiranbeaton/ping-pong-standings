@@ -12,6 +12,7 @@ module.exports = function(app) {
         .then((res) => {
           this.players = res.data;
           this.players.forEach((player) => {
+            player.expanded = false;
             if (player.games.length > 0) {
               player.percentage = parseFloat(player.wins / player.games.length).toFixed(3);
               player.differential = player.pointsFor - player.pointsAgainst;

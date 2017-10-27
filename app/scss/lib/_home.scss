@@ -13,11 +13,19 @@ div.home {
     }
     div.kb-row {
       border-bottom: solid thin black;
+      overflow: hidden;
+      height: 50px;
       &.header-row {
+        height: 30px;
         .kb-column {
+          height: 30px;
           cursor: pointer;
           &.name {
             cursor: default;
+            h5 {
+              position: relative;
+              left: -10px;
+            }
           }
         }
       }
@@ -31,11 +39,41 @@ div.home {
         float: left;
         text-align: center;
         width: 20%;
+        height: 50px;
         margin: 0;
         padding: 0;
-        border: thin solid black;
+        &.expand {
+          width: 12%;
+          padding-top: 15px;
+          &:hover {
+            color: white;
+          }
+        }
+        &.name {
+          width: 28%;
+          p {
+            position: absolute;
+            color: white;
+            left: 10px;
+            z-index: 2;
+          }
+        }
         p {
-          margin: 5px 0px 5px 0px;
+          margin: 15px 0px 15px 0px;
+          z-index: 2;
+        }
+        img {
+          position: relative;
+          max-width: 100%;
+          z-index: 1;
+          &.red {
+            transform: rotate(-90deg);
+            top: -15px;
+          }
+          &.black {
+            left: -25px;
+            top: -5px;
+          }
         }
       }
     }

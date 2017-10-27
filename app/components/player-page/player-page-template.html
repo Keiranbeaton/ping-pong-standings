@@ -1,47 +1,29 @@
-<div class="single-player" ng-init="$ctrl.init()">
-  <h3>{{$ctrl.player.name}}</h3>
-  <div class="opponents">
-    <div class="kb-row">
-      <div class="click-switch" ng-click="$ctrl.switchTotals()" ng-class="{'selected': $ctrl.totals === true, 'unselected': $ctrl.totals === false}">
-        Totals
-      </div>
-      <div class="click-switch" ng-click="$ctrl.switchAverages()" ng-class="{'selected': $ctrl.averages === true, 'unselected': $ctrl.averages === false}">
-        Averages
-      </div>
-    </div>
-    <div class="kb-row header-row">
-      <div class="kb-column name">
-        <p>Opponent</p>
-      </div>
-      <div class="kb-column wins" ng-click="$ctrl.setOrderProperty('wins')">
-        <p>Record<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-wins'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'wins'"></i></p>
-      </div>
-      <div class="kb-column percentage" ng-click="$ctrl.setOrderProperty('percentage')">
-        <p>Win %<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-percentage'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'percentage'"></i></p>
-      </div>
-      <div class="kb-column point-differential" ng-show="$ctrl.totals" ng-click="$ctrl.setOrderProperty('pointDifferential')">
-        <p>+/-<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-pointDifferential'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'pointDifferential'"></i></p>
-      </div>
-      <div class="kb-column average-score" ng-show="$ctrl.averages" ng-click="$ctrl.setOrderProperty('averageDiff')">
-        <p>Avg Score<i class="fa fa-caret-down" ng-show="$ctrl.orderProperty === '-averageDiff'"></i><i class="fa fa-caret-up" ng-show="$ctrl.orderProperty === 'averageDiff'"></i></p>
-      </div>
-    </div>
-    <div class="kb-row" ng-repeat="opponent in $ctrl.opponents | orderBy: $ctrl.orderProperty">
-      <div class="kb-column name">
-        <p>{{opponent.name}}</p>
-      </div>
-      <div class="kb-column wins">
-        <p>{{opponent.wins}} - {{opponent.losses}}</p>
-      </div>
-      <div class="kb-column percentage">
-        <p>{{opponent.percentage}}</p>
-      </div>
-      <div class="kb-column point-differential" ng-show="$ctrl.totals">
-        <p>{{opponent.diffDisplay}}</p>
-      </div>
-      <div class="kb-column average-for" ng-show="$ctrl.averages">
-        <p>{{opponent.averageFor}} - {{opponent.averageAgainst}}</p>
-      </div>
+<section class="single-player" ng-init="$ctrl.init()">
+  <div class="top-container">
+    <div class="player-right">
+      <select ng-model="$ctrl.selectedOpponent" ng-options="opponent.name for opponent in $ctrl.opponents">
+        <option value=""> Opponent: </option>
+      </select>
     </div>
   </div>
-</div>
+  <div class="stats-container">
+    <div class="kb-row">
+      <p class="stats left">{{$ctrl.selectedOpponent.wins}}</p>
+      <h3 class="stats title">Wins</h3>
+      <p class="stats right">{{$ctrl.selectedOpponent.losses}}</p>
+    </div>
+    <div class="kb-row">
+      <p class="stats left">{{$ctrl.selectedOpponent.pointsFor}}</p>
+      <h3 class="stats title">Total Points</h3>
+      <p class="stats right">{{$ctrl.selectedOpponent.pointsAgainst}}</p>
+    </div>
+    <div class="kb-row">
+      <p class="stats left">{{$ctrl.selectedOpponent.averageFor}}</p>
+      <h3 class="stats title">Average Score</h3>
+      <p class="stats right">{{$ctrl.selectedOpponent.averageAgainst}}</p>
+    </div>
+  </div>
+  <div class="bottom-container">
+    <img src="../../assets/table-side-view-wider.png">
+  </div>
+</section>
