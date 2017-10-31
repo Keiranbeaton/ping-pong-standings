@@ -9,13 +9,11 @@ module.exports = function(app) {
 
     this.init = function() {
       $log.debug('PlayerPageController.init');
-      $log.log('this.playerArray', this.playerArray);
       this.opponents = this.playerArray.filter((player) => {
         return player.name !== this.player.name;
       }).map((opponent) => {
         return {name: opponent.name, games: [], wins: 0, losses: 0};
       });
-      $log.log('this.opponents', this.opponents);
       this.opponents.forEach((opponent) => {
         opponent.games = this.player.games.filter((game) => {
           return game.loser.name === opponent.name || game.winner.name === opponent.name;
@@ -66,12 +64,9 @@ module.exports = function(app) {
           opponent.percentage = parseFloat(0).toFixed(3);
         }
       });
-      $log.log('this.opponents before end', this.opponents);
       this.opponents = this.opponents.filter((opponent) => {
-        $log.log('opponent', opponent);
         return opponent.games.length > 0;
       });
-      $log.log('this.opponents end', this.opponents);
     };
   }
 };

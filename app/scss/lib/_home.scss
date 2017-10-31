@@ -1,6 +1,6 @@
 div.home {
   div.kb-container {
-    border: thin black solid;
+    border: solid 2px $kb-color2;
     width: 98%;
     margin-left: 1%;
     margin-right: 1%;
@@ -17,6 +17,8 @@ div.home {
       height: 50px;
       &.header-row {
         height: 30px;
+        background-color: $kb-color3;
+        color: $kb-white;
         .kb-column {
           height: 30px;
           cursor: pointer;
@@ -30,10 +32,10 @@ div.home {
         }
       }
       &.even {
-        background-color: grey;
+        background-color: $kb-color4;
       }
       &.odd {
-        background-color: lightgrey;
+        background-color: $kb-color3;
       }
       div.kb-column {
         float: left;
@@ -45,8 +47,9 @@ div.home {
         &.expand {
           width: 12%;
           padding-top: 15px;
+          color: $kb-white;
           &:hover {
-            color: white;
+            color: $kb-color1;
           }
         }
         &.name {
@@ -54,13 +57,14 @@ div.home {
           p {
             position: absolute;
             color: white;
-            left: 13px;
+            left: 4%;
             z-index: 2;
           }
         }
         p {
           margin: 15px 0px 15px 0px;
           z-index: 2;
+          color: $kb-white;
         }
         img {
           position: relative;
@@ -86,6 +90,23 @@ div.home {
       margin: 20px 0px 0px 0px;
       font-size: 1.6em;
       font-family: $kb-title-font;
+      color: $kb-white;
+    }
+  }
+}
+
+@media (min-width: 400px) {
+  div.home {
+    div.kb-container {
+      div.kb-row {
+        div.kb-column {
+          &.name {
+            p {
+              left: 6%;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -98,7 +119,7 @@ div.home {
           &.name {
             p {
               font-size: 1.5rem;
-              left: 70px;
+              left: 9%;
             }
             img {
               max-width: 75%;
@@ -110,6 +131,26 @@ div.home {
     }
     img {
       max-width: 50%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  div.home {
+    div.kb-container {
+      div.kb-row {
+        div.kb-column {
+          &.name {
+            p {
+              font-size: 2rem;
+              left: 10%;
+            }
+            img {
+              max-width: 50%;
+            }
+          }
+        }
+      }
     }
   }
 }

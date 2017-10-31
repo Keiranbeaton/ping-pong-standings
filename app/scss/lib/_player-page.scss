@@ -1,20 +1,20 @@
 section.single-player {
+  background-color: $kb-color1;
   position: relative;
   width: 100%;
   div.top-container {
     display: block;
     width: 100%;
     height: 20px;
-    margin-top: 10px;
-    padding-left: 7%;
-    padding-right: 7%;
-    div.player-right {
-      float: right;
-      width: 50%;
-      text-align: right;
-      select {
-        border-radius: 5px;
-      }
+    text-align: center;
+    p {
+      display: inline-block;
+      font-weight: bold;
+      color: $kb-white;
+    }
+    select {
+      display: inline-block;
+      border-radius: 5px;
     }
   }
   div.stats-container {
@@ -27,6 +27,8 @@ section.single-player {
       border: none;
       padding-left: 5%;
       padding-right: 5%;
+      border-bottom: solid thin black;
+      margin-bottom: 5px;
       &:after {
         display: table;
         clear: both;
@@ -36,6 +38,7 @@ section.single-player {
         float: left;
         text-align: center;
         height: 20px;
+        color: $kb-white;
       }
       p {
         margin: 0;
@@ -47,6 +50,24 @@ section.single-player {
         width: 70%;
         font-size: 1.2rem;
         font-weight: bold;
+      }
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  section.single-player {
+    div.top-container {
+      height: 40px;
+    }
+    div.stats-container {
+      div.kb-row {
+        p {
+          font-size: 1.5rem;
+        }
+        h3 {
+          font-size: 1.8rem;
+        }
       }
     }
   }

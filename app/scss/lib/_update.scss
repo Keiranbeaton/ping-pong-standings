@@ -1,15 +1,17 @@
 div.update {
   h3 {
+    color: $kb-white;
     font-size: 1.6em;
     text-align: center;
   }
   form.add-game {
+    background-color: $kb-color4;
     width: 95%;
     padding: 2% 5% 2% 5%;
     margin-bottom: 10px;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    border: thin black solid;
+    border: 2px $kb-color2 solid;
     &:after {
       display: table;
       clear: both;
@@ -26,13 +28,14 @@ div.update {
       margin-bottom: 0px;
       font-size: 1em;
       font-weight: bold;
+      color: $kb-white;
     }
     select, input {
       display: block;
       width: 130px;
       line-height: 1em;
       height: 20px;
-
+      color: $kb-black;
       font-size: 1em;
     }
     button {
@@ -44,7 +47,7 @@ div.update {
     p.form-error {
       font-weight: bold;
       font-size: 1em;
-      color: red;
+      color: $kb-color1;
     }
   }
   form.add-player {

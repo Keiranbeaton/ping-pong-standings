@@ -1,12 +1,16 @@
 <section class="single-player" ng-init="$ctrl.init()">
   <div class="top-container">
-    <div class="player-right">
-      <select ng-model="$ctrl.selectedOpponent" ng-options="opponent.name for opponent in $ctrl.opponents">
-        <option value=""> Opponent: </option>
-      </select>
-    </div>
+    <p>Vs.</p>
+    <select ng-model="$ctrl.selectedOpponent" ng-options="opponent.name for opponent in $ctrl.opponents">
+      <option value=""> Opponent: </option>
+    </select>
   </div>
   <div class="stats-container">
+    <div class="kb-row">
+      <p class="stats left">Player:</p>
+      <h3 class="stats title"></h3>
+      <p class="stats right">Opponent:</p>
+    </div>
     <div class="kb-row">
       <p class="stats left">{{$ctrl.selectedOpponent.wins}}</p>
       <h3 class="stats title">Wins</h3>
