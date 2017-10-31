@@ -1,6 +1,9 @@
 {
   "name": "ping-pong-standings",
   "version": "1.0.0",
+  "engines": {
+    "node": "4.4.7"
+  },
   "description": "The standings for our in house ping pong games (Mostly to prove that I beat Joey more than he beats me).",
   "main": "index.js",
   "scripts": {
